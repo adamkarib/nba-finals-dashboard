@@ -1,0 +1,43 @@
+name: Refresh NBA Finals Odds
+
+# Runs every 3 hours ON GAME DAYS ONLY (2026 Finals: Jun 3,5,8,10,13,16,19).
+# Cron is UTC. 8:30 PM ET tip = 00:30 UTC next day, so each game day's
+# window spills into the following UTC date — the date list below covers
+# both the game-day daytime and the late-night/post-game refresh.
+on:
+  schedule:
+    # Every 3 hours on the listed UTC days (June 3-4, 5-6, 8-9, 10-11, 13-14, 16-17, 19-20)
+    - cron: '0 */3 3-4,5-6,8-11,13-14,16-17,19-20 6 *'
+  workflow_dispatch:        # manual "Run workflow" button, any time
+
+permissions:
+  contents: write           # allow the Action to commit odds.json back
+
+jobs:
+  refresh-odds:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch odds
+        env:
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+        run: python fetch_odds.py
+
+      - name: Commit updated odds (if changed)
+        run: |
+          git config user.name  "odds-bot"
+          git config user.email "actions@github.com"
+          git add odds.json
+          if git diff --staged --quiet; then
+            echo "No odds change — nothing to commit."
+          else
+            git commit -m "Auto: refresh odds $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
