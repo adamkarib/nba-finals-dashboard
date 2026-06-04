@@ -7,18 +7,18 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;600;700&display=swap');
   :root{
-    --nyk:#003DA5; --nyk-acc:#F58426; --sas:#C4CED4; --sas-acc:#8a99a8;
-    --bg:#080c12; --surface:#0e1520; --surface2:#131c29; --border:rgba(255,255,255,.07);
-    --text:#e8ecf0; --muted:#5a6a7a; --green:#22c55e; --red:#ef4444; --gold:#f59e0b;
+    --nyk:#003DA5; --nyk-acc:#E06A14; --sas:#5a6a78; --sas-acc:#8a99a8;
+    --bg:#eef1f4; --surface:#ffffff; --surface2:#f3f5f8; --border:rgba(0,0,0,.10);
+    --text:#1a2230; --muted:#6b7888; --green:#16a34a; --red:#dc2626; --gold:#d97706;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-height:100vh}
-  body::before{content:'';position:fixed;inset:0;z-index:0;opacity:.5;pointer-events:none;
+  body::before{content:'';position:fixed;inset:0;z-index:0;opacity:.25;pointer-events:none;
     background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-size:200px}
   .container{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:0 20px 60px}
   header{padding:36px 0 24px;border-bottom:1px solid var(--border);margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:20px}
   h1{font-family:'Bebas Neue';font-size:clamp(2.4rem,5vw,4rem);letter-spacing:.04em;line-height:1;
-    background:linear-gradient(135deg,#fff 40%,var(--nyk-acc));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    background:linear-gradient(135deg,var(--nyk) 30%,var(--nyk-acc));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
   .subtitle{font-family:'DM Mono';font-size:.72rem;color:var(--muted);margin-top:6px;letter-spacing:.08em;text-transform:uppercase}
   .matchup{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 22px}
   .chip{text-align:center}
@@ -35,8 +35,8 @@
   .controls input,.controls select{background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px 12px;font-family:'DM Mono';font-size:.85rem;width:120px}
   .controls .grow{flex:1}
   .status{font-family:'DM Mono';font-size:.7rem;padding:6px 12px;border-radius:6px}
-  .status.live{background:rgba(34,197,94,.12);color:var(--green)}
-  .status.manual{background:rgba(245,158,11,.12);color:var(--gold)}
+  .status.live{background:rgba(22,163,74,.14);color:var(--green)}
+  .status.manual{background:rgba(217,119,6,.14);color:var(--gold)}
 
   .legend{display:flex;gap:22px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:13px 20px;margin-bottom:24px}
   .legend-item{display:flex;align-items:center;gap:7px;font-size:.74rem;color:var(--muted)}
@@ -53,7 +53,7 @@
   .team-head.nyk h2{color:var(--nyk-acc)}.team-head.sas h2{color:var(--sas)}
   .team-head .role{font-size:.64rem;color:var(--muted);font-family:'DM Mono';text-transform:uppercase}
 
-  .pcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;animation:fade .35s ease both}
+  .pcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);animation:fade .35s ease both}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
   .phead{display:flex;justify-content:space-between;align-items:center;padding:13px 18px 10px}
   .pname{font-weight:600;font-size:.95rem}
@@ -71,16 +71,16 @@
   .lineinput input{width:52px;background:var(--surface2);border:1px solid var(--border);border-radius:5px;color:var(--text);padding:3px 6px;font-family:'DM Mono';font-size:.72rem;text-align:center}
   .lineinput .pre{font-family:'DM Mono';font-size:.58rem;color:var(--muted)}
   .edge{margin-top:7px;font-family:'DM Mono';font-size:.62rem;padding:3px 7px;border-radius:4px;display:inline-block}
-  .edge.over{background:rgba(34,197,94,.12);color:var(--green)}
-  .edge.under{background:rgba(239,68,68,.12);color:var(--red)}
-  .edge.neutral{background:rgba(90,106,122,.15);color:var(--muted)}
+  .edge.over{background:rgba(22,163,74,.14);color:var(--green)}
+  .edge.under{background:rgba(220,38,38,.14);color:var(--red)}
+  .edge.neutral{background:rgba(107,120,136,.14);color:var(--muted)}
 
   footer{border-top:1px solid var(--border);padding:20px 0 0;margin-top:44px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
   footer div{font-family:'DM Mono';font-size:.62rem;color:var(--muted)}
   details{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 22px;margin-top:28px}
   summary{font-family:'DM Mono';font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);cursor:pointer}
   details p{font-size:.8rem;color:var(--muted);line-height:1.7;margin-top:12px}
-  code{background:rgba(255,255,255,.06);padding:2px 5px;border-radius:3px;font-family:'DM Mono';font-size:.85em}
+  code{background:rgba(0,0,0,.06);padding:2px 5px;border-radius:3px;font-family:'DM Mono';font-size:.85em}
 </style>
 </head>
 <body>
@@ -93,7 +93,7 @@
     <div class="matchup">
       <div class="chip nyk"><div class="ab">NYK</div><div class="nm">Knicks</div></div>
       <div class="sep">@</div>
-      <div class="gi"><div class="gn" id="gnum">GAME 1</div><div class="gt" id="gdate">WED JUN 3 · 8:30 ET</div></div>
+      <div class="gi"><div class="gn" id="gnum">GAME 2</div><div class="gt" id="gdate">FRI JUN 5 · 8:30 ET</div></div>
       <div class="sep">vs</div>
       <div class="chip sas"><div class="ab">SAS</div><div class="nm">Spurs</div></div>
     </div>
@@ -123,14 +123,14 @@
     <div class="legend-item"><div class="ldot" style="background:var(--gold)"></div>PRA = Pts+Reb+Ast</div>
   </div>
 
-  <div class="section-label">Player Projections — Game 1</div>
+  <div class="section-label">Player Projections — Game 2</div>
   <div class="teams">
     <div>
-      <div class="team-head nyk"><h2>New York Knicks</h2><span class="role">Away · ECF Sweep</span></div>
+      <div class="team-head nyk"><h2>New York Knicks</h2><span class="role">Away · Series leads 1-0</span></div>
       <div id="nyk-list"></div>
     </div>
     <div>
-      <div class="team-head sas"><h2>San Antonio Spurs</h2><span class="role">Home · WCF in 7 · 62.6% Game 1 Fav</span></div>
+      <div class="team-head sas"><h2>San Antonio Spurs</h2><span class="role">Home · Series trails 0-1</span></div>
       <div id="sas-list"></div>
     </div>
   </div>
@@ -145,7 +145,7 @@
 
   <footer>
     <div>Model: GP-adjusted weighted form · pooled σ · normal-CDF edge</div>
-    <div id="updated">Built Jun 3, 2026 · Game 1 of 7</div>
+    <div id="updated">Updated Jun 4, 2026 · Game 2 of 7</div>
   </footer>
 </div>
 
