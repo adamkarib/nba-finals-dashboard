@@ -29,6 +29,44 @@
   .gi .gt{font-family:'DM Mono';font-size:.65rem;color:var(--muted);text-transform:uppercase;margin-top:2px}
   .sep{font-family:'DM Mono';color:var(--muted);font-size:.72rem}
 
+  /* ── COUNTDOWN ── */
+  .countdown-bar{
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:18px 28px;margin-bottom:20px;
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  }
+  .countdown-label{font-family:'DM Mono';font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+  .countdown-units{display:flex;gap:16px;align-items:flex-end}
+  .cunit{text-align:center}
+  .cunit .cv{font-family:'Bebas Neue';font-size:2.6rem;line-height:1;color:var(--nyk);min-width:2ch;display:block}
+  .cunit .cl{font-family:'DM Mono';font-size:.55rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:2px}
+  .countdown-sep{font-family:'Bebas Neue';font-size:2rem;color:var(--border);line-height:1;padding-bottom:6px}
+  .countdown-done{font-family:'Bebas Neue';font-size:1.6rem;color:var(--gold);letter-spacing:.04em}
+
+  /* ── EDGE LEADERBOARD ── */
+  .edge-board{
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:18px 22px;margin-bottom:24px;
+  }
+  .edge-board-title{font-family:'DM Mono';font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .edge-board-title::after{content:'';flex:1;height:1px;background:var(--border)}
+  .edge-board-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:700px){.edge-board-grid{grid-template-columns:1fr}}
+  .eb-section{}
+  .eb-section-label{font-family:'DM Mono';font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+  .eb-section-label.over{color:var(--green)}
+  .eb-section-label.under{color:var(--red)}
+  .eb-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+  .eb-dot.over{background:var(--green)}.eb-dot.under{background:var(--red)}
+  .eb-rows{display:flex;flex-direction:column;gap:6px}
+  .eb-row{display:flex;align-items:center;justify-content:space-between;background:var(--surface2);border-radius:7px;padding:8px 12px;border:1px solid var(--border)}
+  .eb-row .eb-name{font-size:.82rem;font-weight:600}
+  .eb-row .eb-stat{font-family:'DM Mono';font-size:.6rem;color:var(--muted);text-transform:uppercase;margin-top:1px}
+  .eb-row .eb-pct{font-family:'Bebas Neue';font-size:1.35rem;line-height:1}
+  .eb-row .eb-pct.over{color:var(--green)}.eb-row .eb-pct.under{color:var(--red)}
+  .eb-row .eb-proj{font-family:'DM Mono';font-size:.6rem;color:var(--muted)}
+  .eb-empty{font-family:'DM Mono';font-size:.68rem;color:var(--muted);font-style:italic;padding:6px 0}
+
   .controls{display:flex;gap:14px;flex-wrap:wrap;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 22px;margin-bottom:24px}
   .controls label{font-family:'DM Mono';font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
   .controls .field{display:flex;flex-direction:column;gap:6px}
@@ -93,11 +131,32 @@
     <div class="matchup">
       <div class="chip nyk"><div class="ab">NYK</div><div class="nm">Knicks</div></div>
       <div class="sep">@</div>
-      <div class="gi"><div class="gn" id="gnum">GAME 2</div><div class="gt" id="gdate">FRI JUN 5 · 8:30 ET</div></div>
+      <div class="gi"><div class="gn" id="gnum">GAME 3</div><div class="gt" id="gdate">MON JUN 8 · 8:30 ET</div></div>
       <div class="sep">vs</div>
       <div class="chip sas"><div class="ab">SAS</div><div class="nm">Spurs</div></div>
     </div>
   </header>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-bar">
+    <div class="countdown-label">Tip-off countdown · Game 3</div>
+    <div id="countdown-display"></div>
+  </div>
+
+  <!-- EDGE LEADERBOARD -->
+  <div class="edge-board">
+    <div class="edge-board-title">Top Edge Signals</div>
+    <div class="edge-board-grid">
+      <div class="eb-section">
+        <div class="eb-section-label over"><div class="eb-dot over"></div>Strongest OVER edges</div>
+        <div class="eb-rows" id="top-overs"><div class="eb-empty">Enter lines below to see top edges</div></div>
+      </div>
+      <div class="eb-section">
+        <div class="eb-section-label under"><div class="eb-dot under"></div>Strongest UNDER edges</div>
+        <div class="eb-rows" id="top-unders"><div class="eb-empty">Enter lines below to see top edges</div></div>
+      </div>
+    </div>
+  </div>
 
   <div class="controls">
     <div class="field">
@@ -123,14 +182,14 @@
     <div class="legend-item"><div class="ldot" style="background:var(--gold)"></div>PRA = Pts+Reb+Ast</div>
   </div>
 
-  <div class="section-label">Player Projections — Game 2</div>
+  <div class="section-label">Player Projections — Game 3</div>
   <div class="teams">
     <div>
-      <div class="team-head nyk"><h2>New York Knicks</h2><span class="role">Away · Series leads 1-0</span></div>
+      <div class="team-head nyk"><h2>New York Knicks</h2><span class="role">Home · Series leads 2-0</span></div>
       <div id="nyk-list"></div>
     </div>
     <div>
-      <div class="team-head sas"><h2>San Antonio Spurs</h2><span class="role">Home · Series trails 0-1</span></div>
+      <div class="team-head sas"><h2>San Antonio Spurs</h2><span class="role">Away · Series trails 0-2</span></div>
       <div id="sas-list"></div>
     </div>
   </div>
@@ -145,7 +204,7 @@
 
   <footer>
     <div>Model: GP-adjusted weighted form · pooled σ · normal-CDF edge</div>
-    <div id="updated">Updated Jun 4, 2026 · Game 2 of 7</div>
+    <div id="updated">Updated Jun 6, 2026 · Game 3 of 7</div>
   </footer>
 </div>
 
@@ -154,11 +213,74 @@
 // normal CDF (Abramowitz-Stegun)
 function Phi(z){
   const t=1/(1+0.2316419*Math.abs(z));
-  const d=0.3989423*Math.exp(-z*z/2);
+  const d=0.3989423*Math.exp(-z*z /2);
   let p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));
   return z>0?1-p:p;
 }
 function pOver(mu,sd,line){ if(!sd||sd<=0) return mu>line?1:0; return 1-Phi((line-mu)/sd); }
+
+// ---- COUNTDOWN ----
+const TIPOFF = new Date("2026-06-08T20:30:00-04:00"); // 8:30 PM ET
+function updateCountdown(){
+  const now = new Date();
+  const diff = TIPOFF - now;
+  const el = document.getElementById("countdown-display");
+  if(diff <= 0){
+    el.innerHTML = '<span class="countdown-done">🏀 GAME ON</span>';
+    return;
+  }
+  const days    = Math.floor(diff / 86400000);
+  const hours   = Math.floor((diff % 86400000) / 3600000);
+  const minutes = Math.floor((diff % 3600000)  / 60000);
+  const seconds = Math.floor((diff % 60000)    / 1000);
+  el.innerHTML = `<div class="countdown-units">
+    <div class="cunit"><span class="cv">${String(days).padStart(2,'0')}</span><span class="cl">Days</span></div>
+    <div class="countdown-sep">:</div>
+    <div class="cunit"><span class="cv">${String(hours).padStart(2,'0')}</span><span class="cl">Hrs</span></div>
+    <div class="countdown-sep">:</div>
+    <div class="cunit"><span class="cv">${String(minutes).padStart(2,'0')}</span><span class="cl">Min</span></div>
+    <div class="countdown-sep">:</div>
+    <div class="cunit"><span class="cv">${String(seconds).padStart(2,'0')}</span><span class="cl">Sec</span></div>
+  </div>`;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ---- EDGE LEADERBOARD ----
+// Store all live edge data keyed by "player|stat"
+const edgeRegistry = {};
+
+function updateLeaderboard(){
+  const overs  = [];
+  const unders = [];
+  for(const [key, data] of Object.entries(edgeRegistry)){
+    if(data.p > 0.55)       overs.push(data);
+    else if(data.p < 0.45)  unders.push(data);
+  }
+  overs.sort((a,b)  => b.p - a.p);
+  unders.sort((a,b) => a.p - b.p); // lowest p = strongest under
+
+  const statLabel = {pts:"PTS", reb:"REB", ast:"AST"};
+
+  function rowHTML(d, type){
+    const pct = type==="over" ? Math.round(d.p*100) : Math.round((1-d.p)*100);
+    return `<div class="eb-row">
+      <div>
+        <div class="eb-name">${d.player}</div>
+        <div class="eb-stat">${statLabel[d.stat]} · proj ${d.mu.toFixed(1)} / line ${d.line}</div>
+      </div>
+      <div class="eb-pct ${type}">${pct}%</div>
+    </div>`;
+  }
+
+  const overEl  = document.getElementById("top-overs");
+  const underEl = document.getElementById("top-unders");
+
+  overEl.innerHTML  = overs.length  ? overs.slice(0,5).map(d=>rowHTML(d,"over")).join("")
+                                    : '<div class="eb-empty">No strong OVER signals yet</div>';
+  underEl.innerHTML = unders.length ? unders.slice(0,5).map(d=>rowHTML(d,"under")).join("")
+                                    : '<div class="eb-empty">No strong UNDER signals yet</div>';
+}
 
 function statCell(label, key, p){
   const mu=p[key], sd=p["sd_"+key];
@@ -193,13 +315,25 @@ function render(){
 }
 function updateEdge(inp){
   const mu=+inp.dataset.mu, sd=+inp.dataset.sd, line=parseFloat(inp.value);
-  const id="edge-"+inp.dataset.player.replace(/[^a-z]/gi,'')+"-"+inp.dataset.stat;
+  const player=inp.dataset.player, stat=inp.dataset.stat;
+  const id="edge-"+player.replace(/[^a-z]/gi,'')+"-"+stat;
   const el=document.getElementById(id);
-  if(isNaN(line)){ el.className="edge neutral"; el.textContent="line?"; return; }
+  const regKey=player+"|"+stat;
+
+  if(isNaN(line)){
+    el.className="edge neutral"; el.textContent="line?";
+    delete edgeRegistry[regKey];
+    updateLeaderboard();
+    return;
+  }
   const p=pOver(mu,sd,line); const pct=Math.round(p*100);
+  edgeRegistry[regKey]={player, stat, mu, sd, line, p};
+
   if(p>0.55){ el.className="edge over"; el.textContent=`OVER ${pct}%`; }
   else if(p<0.45){ el.className="edge under"; el.textContent=`UNDER ${100-pct}%`; }
   else { el.className="edge neutral"; el.textContent=`lean ${pct}%`; }
+
+  updateLeaderboard();
 }
 
 // ---- Live odds fetch (The Odds API) ----
@@ -211,7 +345,6 @@ async function fetchLive(){
   try{
     const ev=await fetch(`https://api.the-odds-api.com/v4/sports/basketball_nba/events?apiKey=${key}`).then(r=>r.json());
     if(!Array.isArray(ev)||!ev.length){ status.textContent="No NBA events returned"; return; }
-    // find NYK/SAS event
     const game=ev.find(e=>/spurs|knicks/i.test(e.home_team+e.away_team))||ev[0];
     const markets="player_points,player_rebounds,player_assists";
     const odds=await fetch(`https://api.the-odds-api.com/v4/sports/basketball_nba/events/${game.id}/odds?apiKey=${key}&regions=us&markets=${markets}&oddsFormat=american`).then(r=>r.json());
@@ -228,7 +361,7 @@ function applyLive(odds){
       (mk.outcomes||[]).forEach(o=>{
         if(o.point==null) return;
         const k=o.description+"|"+stat;
-        if(!(k in lines)) lines[k]=o.point; // first book wins; could average
+        if(!(k in lines)) lines[k]=o.point;
       });
     });
   });
@@ -244,12 +377,12 @@ document.getElementById("apikey").addEventListener("change",()=>{
   if(document.getElementById("mode").value==="live") fetchLive();
 });
 
-// ---- Auto-load odds.json (written by the scheduled GitHub Action) ----
+// ---- Auto-load odds.json ----
 async function loadAutoOdds(){
   const status=document.getElementById("status");
   try{
-    const res=await fetch("odds.json?ts="+Date.now()); // cache-bust
-    if(!res.ok) return;                                 // no file yet → manual mode
+    const res=await fetch("odds.json?ts="+Date.now());
+    if(!res.ok) return;
     const data=await res.json();
     const lines=data.lines||{};
     let filled=0;
@@ -265,7 +398,7 @@ async function loadAutoOdds(){
       status.className="status manual";
       status.textContent="Auto odds: "+data.note+" — manual entry available";
     }
-  }catch(e){ /* silent: stay in manual mode */ }
+  }catch(e){ /* silent */ }
 }
 
 render();
