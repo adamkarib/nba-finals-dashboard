@@ -130,16 +130,16 @@
     </div>
     <div class="matchup">
       <div class="chip nyk"><div class="ab">NYK</div><div class="nm">Knicks</div></div>
-      <div class="sep">@</div>
-      <div class="gi"><div class="gn" id="gnum">GAME 3</div><div class="gt" id="gdate">MON JUN 8 · 8:30 ET</div></div>
       <div class="sep">vs</div>
+      <div class="gi"><div class="gn" id="gnum">GAME 4</div><div class="gt" id="gdate">WED JUN 10 · 8:30 ET</div></div>
+      <div class="sep">@</div>
       <div class="chip sas"><div class="ab">SAS</div><div class="nm">Spurs</div></div>
     </div>
   </header>
 
   <!-- COUNTDOWN -->
   <div class="countdown-bar">
-    <div class="countdown-label">Tip-off countdown · Game 3</div>
+    <div class="countdown-label">Tip-off countdown · Game 4</div>
     <div id="countdown-display"></div>
   </div>
 
@@ -182,14 +182,14 @@
     <div class="legend-item"><div class="ldot" style="background:var(--gold)"></div>PRA = Pts+Reb+Ast</div>
   </div>
 
-  <div class="section-label">Player Projections — Game 3</div>
+  <div class="section-label">Player Projections — Game 4</div>
   <div class="teams">
     <div>
-      <div class="team-head nyk"><h2>New York Knicks</h2><span class="role">Home · Series leads 2-0</span></div>
+      <div class="team-head nyk"><h2>New York Knicks</h2><span class="role">Home · Series leads 2-1</span></div>
       <div id="nyk-list"></div>
     </div>
     <div>
-      <div class="team-head sas"><h2>San Antonio Spurs</h2><span class="role">Away · Series trails 0-2</span></div>
+      <div class="team-head sas"><h2>San Antonio Spurs</h2><span class="role">Away · Series trails 1-2</span></div>
       <div id="sas-list"></div>
     </div>
   </div>
@@ -204,7 +204,7 @@
 
   <footer>
     <div>Model: GP-adjusted weighted form · pooled σ · normal-CDF edge</div>
-    <div id="updated">Updated Jun 6, 2026 · Game 3 of 7</div>
+    <div id="updated">Updated Jun 9, 2026 · Game 4 of 7</div>
   </footer>
 </div>
 
@@ -220,7 +220,7 @@ function Phi(z){
 function pOver(mu,sd,line){ if(!sd||sd<=0) return mu>line?1:0; return 1-Phi((line-mu)/sd); }
 
 // ---- COUNTDOWN ----
-const TIPOFF = new Date("2026-06-08T20:30:00-04:00"); // 8:30 PM ET
+const TIPOFF = new Date("2026-06-10T20:30:00-04:00"); // 8:30 PM ET
 function updateCountdown(){
   const now = new Date();
   const diff = TIPOFF - now;
