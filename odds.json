@@ -1,5 +1,5 @@
 {
- "updated": 1781201367,
+ "updated": 1781218075,
  "lines": {
   "Mikal Bridges|ast": 2.7,
   "Dylan Harper|ast": 3.3,
@@ -17,10 +17,10 @@
   "Mitchell Robinson|pts": 3.8,
   "Miles McBride|pts": 2.8,
   "Landry Shamet|pts": 7.1,
-  "De'Aaron Fox|pts": 15.3,
+  "De'Aaron Fox|pts": 14.7,
   "Josh Hart|pts": 9.7,
   "Victor Wembanyama|pts": 27.9,
-  "Keldon Johnson|pts": 6.5,
+  "Keldon Johnson|pts": 6.6,
   "Jalen Brunson|pts": 28.3,
   "Dylan Harper|pts": 15.1,
   "OG Anunoby|pts": 18.1,
@@ -28,7 +28,7 @@
   "Mikal Bridges|pts": 10.9,
   "Julian Champagnie|pts": 9.2,
   "Jose Alvarado|pts": 4.1,
-  "Stephon Castle|pts": 15.9,
+  "Stephon Castle|pts": 16.2,
   "Dylan Harper|reb": 5.5,
   "Josh Hart|reb": 8.5,
   "Devin Vassell|reb": 4.5,
@@ -46,7 +46,7 @@
   "Keldon Johnson|ast": 0.5,
   "Mitchell Robinson|ast": 0.5,
   "Mitchell Robinson|reb": 4.5,
-  "Keldon Johnson|reb": 2.7
+  "Keldon Johnson|reb": 2.9
  },
  "note": "46 prop lines (averaged across books)",
  "game": "New York Knicks @ San Antonio Spurs"
